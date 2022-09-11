@@ -1,8 +1,8 @@
-class turboDeviseController < ApplicationController
-  class Responder < ApplicationController::Responder
+class TurboDeviseController < ApplicationController
+  class Responder < ActionController::Responder
     def to_turbo_stream
       controller.render(options.merge(formats: :html))
-    rescue ActionView::MissingTemplates => e
+    rescue ActionView::MissingTemplate => e
       if get?
         raise e
       elsif has_errors? && default_action
@@ -15,3 +15,4 @@ class turboDeviseController < ApplicationController
 
   self.responder = Responder
   respond_to :html, :turbo_stream
+end
